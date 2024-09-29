@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Primary
-@Service
+@Service("jsonResourceQualifier")
 public class ProductServiceJSONImpl implements ProductService{
 
     @Override

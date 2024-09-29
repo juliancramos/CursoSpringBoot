@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
+@Service("listResourceQualifier")
 public class ProductServiceImpl implements ProductService {
     List<Product> products = new ArrayList<>(Arrays.asList(
             new Product(1, "Laptop", 899.99, 10),

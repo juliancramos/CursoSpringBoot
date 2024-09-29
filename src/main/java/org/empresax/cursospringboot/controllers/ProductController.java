@@ -4,6 +4,7 @@ import org.empresax.cursospringboot.Modelo.Product;
 import org.empresax.cursospringboot.service.ProductService;
 import org.empresax.cursospringboot.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ public class ProductController {
     //ProductService productsService = new ProductServiceImpl(); //Polimorfismo dinámico
 
     @Autowired
+    @Qualifier ("jsonResourceQualifier")
     private ProductService productsService; //Inyección de dependencias
 
 
