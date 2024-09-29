@@ -2,15 +2,17 @@ package org.empresax.cursospringboot.Modelo;
 
 public class Product {
     private Integer id;
-    private String nome;
+    private String name;
     private Double price;
     private Integer stock;
     //Se usa Integer y Double para permitir valores nulos
 
 
-    public Product(Integer id, String nome, Double price, Integer stock) {
+    public Product(){}
+
+    public Product(Integer id, String name, Double price, Integer stock) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.price = price;
         this.stock = stock;
     }
@@ -23,12 +25,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.name = nome;
     }
 
     public Double getPrice() {
