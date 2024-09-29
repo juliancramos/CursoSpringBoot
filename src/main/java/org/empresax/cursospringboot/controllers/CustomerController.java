@@ -45,10 +45,12 @@ public class CustomerController {
             if(c1.getId()==c.getId()){
                 c1.setNombre(c.getNombre());
                 c1.setContra(c.getContra());
-                return ResponseEntity.ok("Cliente modificado exitosamente con nombre: "+ c.getNombre());
+                return ResponseEntity.noContent().build();
+                //return ResponseEntity.ok("Cliente modificado exitosamente con nombre: "+ c.getNombre());
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + c.getId());
+        return ResponseEntity.notFound().build();
+        //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + c.getId());
     }
 
     @DeleteMapping("/{id}")
@@ -56,13 +58,15 @@ public class CustomerController {
         for(Customer c:customers){
             if(c.getId()==id){
                 customers.remove(c);
-                return ResponseEntity.ok("Cliente borrado exitosamente con id: "+ c.getId());
+                return ResponseEntity.noContent().build();
+                //return ResponseEntity.ok("Cliente borrado exitosamente con id: "+ c.getId());
                 //Hacerlo de la siguiente manera no tira error pero es contradictoria ya que se usa un NO_CONTENT pero
                 // igualmente se envía contenido, por lo tanto es mejor con un ok si se quiere enviar información
                 //return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Cliente borrado exitosamente con id: "+ c.getId());
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + id);
+        return ResponseEntity.notFound().build();
+        //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + id);
     }
     @PatchMapping
     public ResponseEntity <?> patchCustomer(@RequestBody Customer customer){
