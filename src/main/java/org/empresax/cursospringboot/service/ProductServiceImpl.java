@@ -1,11 +1,13 @@
 package org.empresax.cursospringboot.service;
 
 import org.empresax.cursospringboot.Modelo.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService{
     List<Product> products = new ArrayList<>(Arrays.asList(
             new Product(1, "Laptop", 899.99, 10 ),
