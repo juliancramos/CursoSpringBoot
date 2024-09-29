@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Primary
 @Service("jsonResourceQualifier")
@@ -24,5 +25,13 @@ public class ProductServiceJSONImpl implements ProductService{
         }catch(IOException e){
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Product getProduct(Integer id) {
+        return getProducts().stream()
+                .filter(product -> product.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado con id: " + id));
     }
 }
