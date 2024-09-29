@@ -35,9 +35,9 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con nombre: " + nombre);
     }
     @PostMapping
-    public Customer postCustomer(@RequestBody Customer c){
+    public ResponseEntity <?> postCustomer(@RequestBody Customer c){
         customers.add(c);
-        return c;
+        return ResponseEntity.status(HttpStatus.CREATED).body("Cliente creado exitosamente con nombre: "+ c.getNombre());
     }
     @PutMapping
     public Customer putCustomer(@RequestBody Customer c){
