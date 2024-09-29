@@ -40,29 +40,32 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Cliente creado exitosamente con nombre: "+ c.getNombre());
     }
     @PutMapping
-    public Customer putCustomer(@RequestBody Customer c){
+    public ResponseEntity <?> putCustomer(@RequestBody Customer c){
         for(Customer c1:customers){
             if(c1.getId()==c.getId()){
                 c1.setNombre(c.getNombre());
                 c1.setContra(c.getContra());
-                return c1;
+                return ResponseEntity.ok("Cliente modificado exitosamente con nombre: "+ c.getNombre());
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + c.getId());
     }
 
     @DeleteMapping("/{id}")
-    public Customer deleteCustomer(@PathVariable int id){
+    public ResponseEntity <?> deleteCustomer(@PathVariable int id){
         for(Customer c:customers){
             if(c.getId()==id){
                 customers.remove(c);
-                return c;
+                return ResponseEntity.ok("Cliente borrado exitosamente con id: "+ c.getId());
+                //Hacerlo de la siguiente manera no tira error pero es contradictoria ya que se usa un NO_CONTENT pero
+                // igualmente se envía contenido, por lo tanto es mejor con un ok si se quiere enviar información
+                //return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Cliente borrado exitosamente con id: "+ c.getId());
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + id);
     }
     @PatchMapping
-    public Customer patchCustomer(@RequestBody Customer customer){
+    public ResponseEntity <?> patchCustomer(@RequestBody Customer customer){
         for(Customer c1:customers){
             if(c1.getId()==customer.getId()){
                 if (customer.getNombre() != null) {
@@ -71,9 +74,9 @@ public class CustomerController {
                 if (customer.getContra() != null) {
                     c1.setContra(customer.getContra());
                 }
-                return c1;
+                return ResponseEntity.ok("Cliente modificado exitosamente con id: "+ customer.getId());
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + customer.getId());
     }
 }
