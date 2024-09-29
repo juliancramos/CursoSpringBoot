@@ -1,6 +1,7 @@
 package org.empresax.cursospringboot.controllers;
 
 import org.empresax.cursospringboot.Modelo.Product;
+import org.empresax.cursospringboot.service.ProductService;
 import org.empresax.cursospringboot.service.ProductServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    ProductServiceImpl productService = new ProductServiceImpl();
+    ProductService productService = new ProductServiceImpl(); //Polimorfismo dinámico
 
     @GetMapping
     public ResponseEntity <?> getProducts() {
