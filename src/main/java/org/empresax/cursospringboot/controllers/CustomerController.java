@@ -1,6 +1,7 @@
 package org.empresax.cursospringboot.controllers;
 
 import org.empresax.cursospringboot.Modelo.Customer;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class CustomerController {
 
     //@GetMapping //Si no se pone el Request Mapping entonces se debe poner la ruta ("/clientes")
     @RequestMapping(method = RequestMethod.GET)//Alternativa a GetMapping si se está usando Request
-    private List<Customer> getCustomers(){
-        return customers;
+    private ResponseEntity<List<Customer>> getCustomers(){
+        return ResponseEntity.ok(customers);
     }
     //@GetMapping("/{nombre}")
     @RequestMapping(value = "/{nombre}", method = RequestMethod.GET)//Alternativa a GetMapping con parámetro
