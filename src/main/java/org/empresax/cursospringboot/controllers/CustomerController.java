@@ -1,6 +1,7 @@
 package org.empresax.cursospringboot.controllers;
 
 import org.empresax.cursospringboot.Modelo.Customer;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +26,13 @@ public class CustomerController {
     }
     //@GetMapping("/{nombre}")
     @RequestMapping(value = "/{nombre}", method = RequestMethod.GET)//Alternativa a GetMapping con parámetro
-    private Customer getCustomer(@PathVariable String nombre){
+    private ResponseEntity <?> getCustomer(@PathVariable String nombre){
         for(Customer c:customers){
             if(c.getNombre().equalsIgnoreCase(nombre)){
-                return c;
+                return ResponseEntity.ok(c);
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con nombre: " + nombre);
     }
     @PostMapping
     public Customer postCustomer(@RequestBody Customer c){
